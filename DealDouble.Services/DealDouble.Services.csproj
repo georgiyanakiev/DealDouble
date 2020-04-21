@@ -4,16 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9C949361-22CF-4097-A8E3-EE721618D7E8}</ProjectGuid>
+    <ProjectGuid>{A2FB2A86-0E65-4736-937A-DE2F17D68E84}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DealDouble.Data</RootNamespace>
-    <AssemblyName>DealDouble.Data</AssemblyName>
+    <RootNamespace>DealDouble.Services</RootNamespace>
+    <AssemblyName>DealDouble.Services</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,35 +48,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DealDoubleContext.cs" />
-    <Compile Include="Migrations\202004201822095_auctionEntityAdded.cs" />
-    <Compile Include="Migrations\202004201822095_auctionEntityAdded.Designer.cs">
-      <DependentUpon>202004201822095_auctionEntityAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004201844373_auctions_EndingTime.cs" />
-    <Compile Include="Migrations\202004201844373_auctions_EndingTime.Designer.cs">
-      <DependentUpon>202004201844373_auctions_EndingTime.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="AuctionsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\DealDouble.Data\DealDouble.Data.csproj">
+      <Project>{9C949361-22CF-4097-A8E3-EE721618D7E8}</Project>
+      <Name>DealDouble.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DealDouble.Entities\DealDouble.Entities.csproj">
-      <Project>{d795e420-efc0-42c2-86c9-519645d665f7}</Project>
+      <Project>{D795E420-EFC0-42C2-86C9-519645D665F7}</Project>
       <Name>DealDouble.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202004201822095_auctionEntityAdded.resx">
-      <DependentUpon>202004201822095_auctionEntityAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004201844373_auctions_EndingTime.resx">
-      <DependentUpon>202004201844373_auctions_EndingTime.cs</DependentUpon>
-    </EmbeddedResource>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
