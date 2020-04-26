@@ -22,9 +22,7 @@ namespace DealDouble.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            
-            
-            return View();
+           return View();
         }
 
 
