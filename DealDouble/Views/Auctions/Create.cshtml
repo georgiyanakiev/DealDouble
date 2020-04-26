@@ -4,7 +4,7 @@
     Create Auction
 </h2>
 
-<form method="post">
+<form id="createForm" method="post" action="Auctios/Create/">
 
     <label>
         Title
@@ -41,8 +41,26 @@
 
     <br />
 
-    <button>
+    <button type="button" id="saveButton">
         Save
     </button>
 </form>
+
+<script>
+    $("#saveButton").click(function () {
+        $.ajax({
+            url: "Create/",
+            method: "post",
+            data: $("#createForm").serialize()
+        })
+            .done(function (response) {
+                debugger;
+                $("#listingArea").html(response);
+
+            })
+            .fail(function () {
+
+            })
+    });
+</script>
 

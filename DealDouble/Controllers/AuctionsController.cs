@@ -22,7 +22,7 @@ namespace DealDouble.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-           return View();
+           return PartialView();
         }
 
 
@@ -31,9 +31,9 @@ namespace DealDouble.Controllers
         {
             AuctionsService service = new AuctionsService();
             service.SaveAuction(auction);
-            return View(auction);
+            return RedirectToAction("Index");
         }
-
+        
         [HttpGet]
         public ActionResult Edit(int ID)
         {
