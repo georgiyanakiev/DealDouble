@@ -15,7 +15,15 @@ namespace DealDouble.Controllers
         {
             AuctionsService service = new AuctionsService();
             var auctions = service.GetAllAuction();
-            return View(auctions);
+
+            if(Request.IsAjaxRequest())
+            {
+                return PartialView(auctions);
+            }
+            else
+            {
+                return View(auctions);
+            }
         }
 
 
@@ -42,7 +50,7 @@ namespace DealDouble.Controllers
 
             var auction = service.GetAuctionByID(ID);
 
-             return View(auction);
+             return PartialView(auction);
         }
 
         [HttpPost]
@@ -50,7 +58,7 @@ namespace DealDouble.Controllers
         {
             AuctionsService service = new AuctionsService();
             service.UpdateAuction(auction);
-            return View(auction);
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
