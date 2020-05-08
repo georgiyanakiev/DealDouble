@@ -10,11 +10,13 @@ namespace DealDouble.Controllers
 {
     public class AuctionsController : Controller
     {
+        AuctionsService service = new AuctionsService();
+
         [HttpGet]
         public ActionResult Index()
         {
-            AuctionsService service = new AuctionsService();
-            var auctions = service.GetAllAuction();
+            
+            var auctions = service.GetAllAuctions();
 
             if(Request.IsAjaxRequest())
             {
@@ -37,7 +39,7 @@ namespace DealDouble.Controllers
         [HttpPost]
         public ActionResult Create(Auction auction)
         {
-            AuctionsService service = new AuctionsService();
+            
             service.SaveAuction(auction);
             return RedirectToAction("Index");
         }
@@ -46,7 +48,7 @@ namespace DealDouble.Controllers
         public ActionResult Edit(int ID)
         {
 
-            AuctionsService service = new AuctionsService();
+            
 
             var auction = service.GetAuctionByID(ID);
 
@@ -56,7 +58,7 @@ namespace DealDouble.Controllers
         [HttpPost]
         public ActionResult Edit(Auction auction)
         {
-            AuctionsService service = new AuctionsService();
+            
             service.UpdateAuction(auction);
             return RedirectToAction("Index");
         }
@@ -65,7 +67,7 @@ namespace DealDouble.Controllers
         public ActionResult Delete(int ID)
         {
 
-            AuctionsService service = new AuctionsService();
+            
 
             var auction = service.GetAuctionByID(ID);
 
@@ -75,9 +77,20 @@ namespace DealDouble.Controllers
         [HttpPost]
         public ActionResult Delete(Auction auction)
         {
-            AuctionsService service = new AuctionsService();
+           
             service.DeleteAuction(auction);
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Details(int ID)
+        {
+
+           
+
+            var auction = service.GetAuctionByID(ID);
+
+            return View(auction);
         }
     }
 }

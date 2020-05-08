@@ -10,11 +10,18 @@ namespace DealDouble.Services
 {
    public class AuctionsService
     {
-        public List<Auction> GetAllAuction()
+        public List<Auction> GetAllAuctions()
         {
             DealDoubleContext context = new DealDoubleContext();
 
             return context.Auctions.ToList();
+        }
+
+        public List<Auction> GetPromotedAuctions()
+        {
+            DealDoubleContext context = new DealDoubleContext();
+
+            return context.Auctions.Take(4).ToList();
         }
         public Auction GetAuctionByID(int ID)
         {
