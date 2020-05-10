@@ -1,5 +1,6 @@
 ﻿using DealDouble.Entities;
 using DealDouble.Services;
+using DealDouble.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,16 +16,17 @@ namespace DealDouble.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            
-            var auctions = service.GetAllAuctions();
+
+            AuctionsListingViewModel model = new AuctionsListingViewModel();
+            model.Auctions = service.GetAllAuctions();
 
             if(Request.IsAjaxRequest())
             {
-                return PartialView(auctions);
+                return PartialView(model);
             }
             else
             {
-                return View(auctions);
+                return View(model);
             }
         }
 
