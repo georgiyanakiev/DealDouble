@@ -18,6 +18,12 @@ namespace DealDouble.Controllers
         {
 
             AuctionsListingViewModel model = new AuctionsListingViewModel();
+
+            model.PageTitle = "Auctions";
+            model.PageDescription = "Auction Listing Page";
+
+
+
             model.Auctions = service.GetAllAuctions();
 
             if(Request.IsAjaxRequest())
