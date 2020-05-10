@@ -60,19 +60,25 @@
             </table>
 
             <div>
-                <button class=" btn btn-success" id="createButton">Create New Auction</button>
+                <button class=" btn btn-success" id="createButton" data-toggle="modal" data-target="#formModal">Create New Auction</button>
             </div>
 
+           <!-- Modal -->
+            <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" id="contentArea">
 
-            <div id="contentArea">
-
+                  
+                    </div>
+                </div>
             </div>
+
 
             <script>
                 $("#createButton").click(function () {
                     $.ajax({
                         url: "Create/",
-                        method: "get"
+                        type: "get"
 
                     }).done(function (response) {
 
