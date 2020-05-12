@@ -55,14 +55,14 @@
 <script>
     $("#saveButton").click(function () {
         $.ajax({
-            url: "Edit",
+            url: "@Url.Action("Edit", "Auctions")",
             method: "post",
             data: $("#editForm").serialize()
         })
             .done(function (response) {
                 $("#listingArea").html(response);
                 $('#formModal').modal('toggle');
-                
+
            });
     });
 </script>

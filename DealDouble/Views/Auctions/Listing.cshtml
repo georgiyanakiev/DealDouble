@@ -56,7 +56,7 @@
 <script>
     $(".editButton").click(function () {
         $.ajax({
-            url: "Edit/",
+            url: "@Url.Action("Edit", "Auctions")",
             method: "get",
             data: {
                 ID: $(this).attr("data-id")
