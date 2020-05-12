@@ -16,27 +16,25 @@ namespace DealDouble.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-
             AuctionsListingViewModel model = new AuctionsListingViewModel();
 
             model.PageTitle = "Auctions";
             model.PageDescription = "Auction Listing Page";
-
-
-
-            model.Auctions = service.GetAllAuctions();
-
-            if(Request.IsAjaxRequest())
-            {
-                return PartialView(model);
-            }
-            else
-            {
-                return View(model);
-            }
+            
+            return View(model);
         }
 
 
+        
+        public ActionResult Listing()
+        {
+
+            AuctionsListingViewModel model = new AuctionsListingViewModel();
+
+            model.Auctions = service.GetAllAuctions();
+            return PartialView(model);
+        }
+    
         [HttpGet]
         public ActionResult Create()
         {
@@ -49,15 +47,12 @@ namespace DealDouble.Controllers
         {
             
             service.SaveAuction(auction);
-            return RedirectToAction("Index");
+            return RedirectToAction("Listing");
         }
         
         [HttpGet]
         public ActionResult Edit(int ID)
         {
-
-            
-
             var auction = service.GetAuctionByID(ID);
 
              return PartialView(auction);
@@ -68,15 +63,12 @@ namespace DealDouble.Controllers
         {
             
             service.UpdateAuction(auction);
-            return RedirectToAction("Index");
+            return RedirectToAction("Listing");
         }
 
         [HttpGet]
         public ActionResult Delete(int ID)
         {
-
-            
-
             var auction = service.GetAuctionByID(ID);
 
             return View(auction);
@@ -87,18 +79,14 @@ namespace DealDouble.Controllers
         {
            
             service.DeleteAuction(auction);
-            return RedirectToAction("Index");
+            return RedirectToAction("Listing");
         }
 
         [HttpGet]
         public ActionResult Details(int ID)
         {
-
-           
-
-            var auction = service.GetAuctionByID(ID);
-
-            return View(auction);
+             var auction = service.GetAuctionByID(ID);
+             return View(auction);
         }
     }
 }

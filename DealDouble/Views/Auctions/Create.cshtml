@@ -5,7 +5,7 @@
     </button>
 </div>
 
-<form id="createForm" method="post" action="Auctios/Create/">
+<form id="createForm" method="post" action="Auctions/Create/">
 
     <div class="modal-body">
         <div class="form-group">
@@ -59,15 +59,14 @@
 <script>
     $("#saveButton").click(function () {
         $.ajax({
-            url: "Create/",
+            url: "Create",
             method: "post",
             data: $("#createForm").serialize()
         })
             .done(function (response) {
-                debugger;
                 $("#listingArea").html(response);
-
-            });
+                $('#formModal').modal('toggle');
+             });
     });
 </script>
 
