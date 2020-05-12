@@ -1,65 +1,68 @@
 ﻿@model DealDouble.Entities.Auction
 
-<h2>
-    Edit Auction
-</h2>
+<div class="modal-header">
+    <h5 class="modal-title">Edit Auction</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
 
 <form id="editForm" method="post">
 
     <input type="hidden" name="ID" value="@Model.ID" />
     <div class="form-group">
         <label>
-            Title
+              Title
         </label>
         <input class="form-control" name="Title" value="@Model.Title" />
     </div>
 
     <div class="form-group">
         <label>
-            Description
+               Description
         </label>
-        <input class="form-control" name="Description" value="@Model.Description"/>
+        <input class="form-control" name="Description" value="@Model.Description" />
     </div>
 
     <div class="form-group">
         <label>
-            ActualAmount
+               ActualAmount
         </label>
-        <input class="form-control" name="ActualAmount" value="@Model.ActualAmount"/>
+        <input class="form-control" name="ActualAmount" value="@Model.ActualAmount" />
     </div>
 
     <div class="form-group">
         <label>
-            StartingTime
+               StartingTime
         </label>
-        <input class="form-control" name="StartingTime" value="@Model.StartingTime"/>
+        <input class="form-control" name="StartingTime" value="@Model.StartingTime" />
     </div>
 
     <div class="form-group">
         <label>
-            EndingTime
+               EndingTime
         </label>
-        <input class="form-control" name="EndingTime" value="@Model.EndingTime"/>
+        <input class="form-control" name="EndingTime" value="@Model.EndingTime" />
     </div>
-
-    <br />
-
-    <button class="btn btn-primary" type="button" id="saveButton">
-        Save
-    </button>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button class="btn btn-primary" type="button" id="saveButton">
+             Save
+        </button>
+    </div>
 </form>
 
 <script>
     $("#saveButton").click(function () {
         $.ajax({
-            url: "Edit/",
+            url: "Edit",
             method: "post",
             data: $("#editForm").serialize()
         })
             .done(function (response) {
-                debugger;
                 $("#listingArea").html(response);
-
-            });
-      });
+                $('#formModal').modal('toggle');
+                
+           });
+    });
 </script>
