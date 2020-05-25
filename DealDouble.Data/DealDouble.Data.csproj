@@ -59,6 +59,26 @@
     <Compile Include="Migrations\202004201844373_auctions_EndingTime.Designer.cs">
       <DependentUpon>202004201844373_auctions_EndingTime.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005161046391_auctionPictures.cs" />
+    <Compile Include="Migrations\202005161046391_auctionPictures.Designer.cs">
+      <DependentUpon>202005161046391_auctionPictures.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005162031493_auctionPictures1.cs" />
+    <Compile Include="Migrations\202005162031493_auctionPictures1.Designer.cs">
+      <DependentUpon>202005162031493_auctionPictures1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005251449288_modified.cs" />
+    <Compile Include="Migrations\202005251449288_modified.Designer.cs">
+      <DependentUpon>202005251449288_modified.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005251835182_addedmodifiedon.cs" />
+    <Compile Include="Migrations\202005251835182_addedmodifiedon.Designer.cs">
+      <DependentUpon>202005251835182_addedmodifiedon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005251841214_deletedmodifiedon.cs" />
+    <Compile Include="Migrations\202005251841214_deletedmodifiedon.Designer.cs">
+      <DependentUpon>202005251841214_deletedmodifiedon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -78,6 +98,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004201844373_auctions_EndingTime.resx">
       <DependentUpon>202004201844373_auctions_EndingTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005161046391_auctionPictures.resx">
+      <DependentUpon>202005161046391_auctionPictures.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005162031493_auctionPictures1.resx">
+      <DependentUpon>202005162031493_auctionPictures1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005251449288_modified.resx">
+      <DependentUpon>202005251449288_modified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005251835182_addedmodifiedon.resx">
+      <DependentUpon>202005251835182_addedmodifiedon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005251841214_deletedmodifiedon.resx">
+      <DependentUpon>202005251841214_deletedmodifiedon.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

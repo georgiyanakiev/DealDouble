@@ -12,38 +12,45 @@
             <label>
                 Title
             </label>
-            <input class="form-control" name="Title" />
+            <input class="form-control" name="Title" required/>
         </div>
 
         <div class="form-group">
             <label>
                 Description
             </label>
-            <input class="form-control" name="Description" />
+            <input class="form-control" name="Description" required/>
         </div>
 
         <div class="form-group">
             <label>
                 ActualAmount
             </label>
-            <input class="form-control" name="ActualAmount" />
+            <input class="form-control" name="ActualAmount" required/>
         </div>
 
         <div class="form-group">
             <label>
                 StartingTime
             </label>
-            <input class="form-control" name="StartingTime" />
+            <input class="form-control" name="StartingTime" required/>
         </div>
 
         <div class="form-group">
             <label>
                 EndingTime
             </label>
-            <input class="form-control" name="EndingTime" />
+            <input class="form-control" name="EndingTime" required/>
         </div>
 
-    </div>
+        <div class="form-group">
+            <label>
+                Select Pictures
+            </label>
+           <input id="auctionPictures" class="form-control" name="AuctionPictures" type="file" multiple required/>
+        <div id="picturesArea"></div>
+        </div>
+     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button class="btn btn-primary" type="button" id="saveButton" >
@@ -59,14 +66,50 @@
 <script>
     $("#saveButton").click(function () {
         $.ajax({
-            url: "Create",
-            method: "post",
+            url: "@Url.Action("Create", "Auctions")",
+            method: "POST",
             data: $("#createForm").serialize()
         })
             .done(function (response) {
                 $("#listingArea").html(response);
                 $('#formModal').modal('toggle');
              });
+    });
+
+    $("#auctionPictures").change(function () {
+      
+
+        var pictures = this.files;
+
+        var picsData = new FormData();
+
+        for (var i = 0; i < pictures.length; i++) {
+            picsData.append("Picture", pictures[i]);
+
+        }
+
+        $.ajax({
+            url: "@Url.Action("UploadPictures", "Shared")",
+            type: "post",
+            data: picsData,
+            dateType: "json",
+            processData: false,
+            contentType: false
+        })
+            .done(function (responses) {
+
+                for (var i = 0; i < responses.length; i++)
+                {
+                    var picResponse = responses[i];
+
+                    var imgHtml = "<img src='/content/images/" + picResponse.url + "' />"
+
+                    $("#picturesArea").append(imgHtml);
+                }
+
+                //$("#listingArea").html(response);
+                //$('#formModal').modal('toggle');
+            });
     });
 </script>
 

@@ -66,14 +66,6 @@ namespace DealDouble.Controllers
             return RedirectToAction("Listing");
         }
 
-        [HttpGet]
-        public ActionResult Delete(int ID)
-        {
-            var auction = service.GetAuctionByID(ID);
-
-            return View(auction);
-        }
-
         [HttpPost]
         public ActionResult Delete(Auction auction)
         {
