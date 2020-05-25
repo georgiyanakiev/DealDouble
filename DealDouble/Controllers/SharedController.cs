@@ -31,7 +31,7 @@ namespace DealDouble.Controllers
 
                 var fileName = Guid.NewGuid() + Path.GetExtension(picture.FileName);
 
-                var path = Server.MapPath("~/Content/images/") + fileName;
+                var path = Server.MapPath("/Content/images/") + fileName;
 
                 picture.SaveAs(path);
 
