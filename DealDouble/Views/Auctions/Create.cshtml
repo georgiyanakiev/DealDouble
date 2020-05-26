@@ -49,6 +49,7 @@
             </label>
            <input id="auctionPictures" class="form-control" name="AuctionPictures" type="file" multiple required/>
         <div id="picturesArea"></div>
+            <input type="hidden" name="AuctionPictures" id="pictureIDs"/>
         </div>
      </div>
     <div class="modal-footer">
@@ -97,7 +98,7 @@
             contentType: false
         })
             .done(function (responses) {
-
+                var picIDs = '';
                 for (var i = 0; i < responses.length; i++)
                 {
                     var picResponse = responses[i];
@@ -105,10 +106,11 @@
                     var imgHtml = "<img class='img-fluid' src='/content/images/" + picResponse.pictureURL + "' />"
 
                     $("#picturesArea").append(imgHtml);
+
+                    picIDs = picIDs + "." + picResponse.ID;
                 }
 
-                //$("#listingArea").html(response);
-                //$('#formModal').modal('toggle');
+                $("pictureIDs").va(picIDs);
             });
     });
 </script>
