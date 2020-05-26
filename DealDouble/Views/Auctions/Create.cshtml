@@ -92,7 +92,7 @@
             url: "@Url.Action("UploadPictures", "Shared")",
             type: "POST",
             data: picsData,
-            dateType: "JSON",
+            dataType: "JSON",
             processData: false,
             contentType: false
         })
@@ -102,7 +102,7 @@
                 {
                     var picResponse = responses[i];
 
-                    var imgHtml = "<img class='img-fluid' src='/content/images/" + picResponse.URL + "' />"
+                    var imgHtml = "<img class='img-fluid' src='/content/images/" + picResponse.pictureURL + "' />"
 
                     $("#picturesArea").append(imgHtml);
                 }
