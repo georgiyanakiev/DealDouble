@@ -90,9 +90,9 @@
 
         $.ajax({
             url: "@Url.Action("UploadPictures", "Shared")",
-            type: "post",
+            type: "POST",
             data: picsData,
-            dateType: "json",
+            dataType: "JSON",
             processData: false,
             contentType: false
         })
@@ -102,7 +102,7 @@
                 {
                     var picResponse = responses[i];
 
-                    var imgHtml = "<img src='/content/images/" + picResponse.url + "' />"
+                    var imgHtml = "<img class='img-fluid' src='/content/images/" + picResponse.pictureURL + "' />"
 
                     $("#picturesArea").append(imgHtml);
                 }
