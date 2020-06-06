@@ -11,7 +11,9 @@ namespace DealDouble.Controllers
 {
     public class AuctionsController : Controller
     {
-        AuctionsService service = new AuctionsService();
+        AuctionsService auctionsService = new AuctionsService();
+
+        CategoriesService categoriesService = new CategoriesService();
 
         [HttpGet]
         public ActionResult Index()
@@ -31,14 +33,18 @@ namespace DealDouble.Controllers
 
             AuctionsListingViewModel model = new AuctionsListingViewModel();
 
-            model.Auctions = service.GetAllAuctions();
+            model.Auctions = auctionsService.GetAllAuctions();
             return PartialView(model);
         }
     
         [HttpGet]
         public ActionResult Create()
         {
-           return PartialView();
+
+            CreateAuctionViewModel model = new CreateAuctionViewModel();
+
+            model.Categories = categoriesService.GetAllCategories(); 
+            return PartialView(model);
         }
 
 
@@ -47,15 +53,15 @@ namespace DealDouble.Controllers
         {
             Auction auction = new Auction();
             auction.Title = model.Title;
+            auction.CategoryID = model.CategoryID;
             auction.Description = model.Description;
             auction.ActualAmount = model.ActualAmount;
             auction.StartingTime = model.StartingTime;
             auction.EndingTime = model.EndingTime;
 
             //LINQ
-            var pictureIDs = model.AuctionPictures
-                                         .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                                         .Select(ID=> int.Parse(ID)).ToList();
+            var pictureIDs = model.AuctionPictures.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(ID => int.Parse(ID)).ToList();
+
             auction.AuctionPictures = new List<AuctionPicture>();
             auction.AuctionPictures.AddRange(pictureIDs.Select(x => new AuctionPicture() { PictureID = x }).ToList());
 
@@ -71,7 +77,7 @@ namespace DealDouble.Controllers
 
 
 
-            service.SaveAuction(auction);
+            auctionsService.SaveAuction(auction);
    
             return RedirectToAction("Listing");
         }
@@ -79,7 +85,7 @@ namespace DealDouble.Controllers
         [HttpGet]
         public ActionResult Edit(int ID)
         {
-            var auction = service.GetAuctionByID(ID);
+            var auction = auctionsService.GetAuctionByID(ID);
 
              return PartialView(auction);
         }
@@ -88,7 +94,7 @@ namespace DealDouble.Controllers
         public ActionResult Edit(Auction auction)
         {
             
-            service.UpdateAuction(auction);
+            auctionsService.UpdateAuction(auction);
             return RedirectToAction("Listing");
         }
 
@@ -96,15 +102,21 @@ namespace DealDouble.Controllers
         public ActionResult Delete(Auction auction)
         {
            
-            service.DeleteAuction(auction);
+            auctionsService.DeleteAuction(auction);
             return RedirectToAction("Listing");
         }
 
         [HttpGet]
         public ActionResult Details(int ID)
         {
-             var auction = service.GetAuctionByID(ID);
-             return View(auction);
+            AuctionsDetailsViewModel model = new AuctionsDetailsViewModel();
+           
+            model.Auctions = auctionsService.GetAuctionByID(ID);
+
+            model.PageTitle = "Auctions Details: " + model.Auctions.Title;
+            model.PageDescription = model.Auctions.Description.Substring(0, 10);
+
+             return View(model);
         }
     }
 }

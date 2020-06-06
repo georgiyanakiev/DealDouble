@@ -1,4 +1,7 @@
-﻿<div class="modal-header">
+﻿@model DealDouble.ViewModels.CreateAuctionViewModel
+
+
+<div class="modal-header">
     <h5 class="modal-title">Create Auction</h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -12,46 +15,58 @@
             <label>
                 Title
             </label>
-            <input class="form-control" name="Title" required/>
+            <input class="form-control" name="Title" required />
+        </div>
+
+        <div class="form-group">
+            <label>
+                Category
+            </label>
+            <select class="form-control" name="CategoryID">
+                @foreach (var category in Model.Categories)
+                {
+                        <option value="@category.ID">@category.Name</option>
+                }
+            </select>
         </div>
 
         <div class="form-group">
             <label>
                 Description
             </label>
-            <input class="form-control" name="Description" required/>
+            <input class="form-control" name="Description" required />
         </div>
 
         <div class="form-group">
             <label>
                 ActualAmount
             </label>
-            <input class="form-control" name="ActualAmount" required/>
+            <input class="form-control" name="ActualAmount" required />
         </div>
 
         <div class="form-group">
             <label>
                 StartingTime
             </label>
-            <input class="form-control" name="StartingTime" required/>
+            <input class="form-control" name="StartingTime" required />
         </div>
 
         <div class="form-group">
             <label>
                 EndingTime
             </label>
-            <input class="form-control" name="EndingTime" required/>
+            <input class="form-control" name="EndingTime" required />
         </div>
 
         <div class="form-group">
             <label>
                 Select Pictures
             </label>
-           <input id="auctionPictures" class="form-control" name="AuctionPictures" type="file" multiple required/>
-        <div id="picturesArea"></div>
-            <input type="hidden" name="AuctionPictures" id="pictureIDs"/>
+            <input id="auctionPictures" class="form-control" name="AuctionPictures" type="file" multiple required />
+            <div id="picturesArea"></div>
+            <input type="hidden" name="AuctionPictures" id="pictureIDs" />
         </div>
-     </div>
+    </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button class="btn btn-primary" type="button" id="saveButton" >
@@ -66,6 +81,17 @@
 
 <script>
     $("#saveButton").click(function () {
+
+        var imageIDs = [];
+
+        $("#picturesArea .image").each(function () {
+            var imageID = $(this).attr("data-id");
+
+            imageIDs.push(imageID);
+
+        });
+        $("#pictureIDs").val(imageIDs.join());
+
         $.ajax({
             url: "@Url.Action("Create", "Auctions")",
             method: "POST",
@@ -98,20 +124,24 @@
             contentType: false
         })
             .done(function (responses) {
-                var picIDs = '';
                 for (var i = 0; i < responses.length; i++)
                 {
                     var picResponse = responses[i];
-
-                    var imgHtml = "<img class='img-fluid' src='/content/images/" + picResponse.pictureURL + "' />"
-
-                    $("#picturesArea").append(imgHtml);
-
-                    picIDs = picIDs + "." + picResponse.ID;
+                      AttachNewImage(picResponse.pictureURL, picResponse.picture.ID);
                 }
 
-                $("pictureIDs").va(picIDs);
             });
     });
+
+    function AttachNewImage(imageURL, imageID) {
+        var $newimgHTML = $("#imageTemplate").clone();
+
+        $newimgHTML.find(".image").attr("src", "/content/images/" + imageURL);
+        $newimgHTML.find(".image").attr("data-id", imageID);
+        $("#picturesArea").append($newimgHTML.html());
+
+        RemoveImagesOnClick();
+
+    }
 </script>
 
