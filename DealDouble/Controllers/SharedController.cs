@@ -21,8 +21,6 @@ namespace DealDouble.Controllers
 
             List<object>picturesJSON = new List<object>();
 
-            result.Data = 1;
-
             var pictures = Request.Files;
 
             for (int i = 0; i < pictures.Count; i++)
