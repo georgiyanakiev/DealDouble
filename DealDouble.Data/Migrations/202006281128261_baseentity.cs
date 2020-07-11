@@ -1,9 +1,9 @@
-namespace DealDouble.Data.Migrations
+﻿namespace DealDouble.Data.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class auction : DbMigration
+    public partial class baseentity : DbMigration
     {
         public override void Up()
         {
@@ -12,7 +12,7 @@ namespace DealDouble.Data.Migrations
         
         public override void Down()
         {
-           
+          
         }
     }
 }

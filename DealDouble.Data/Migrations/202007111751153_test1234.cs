@@ -1,18 +1,16 @@
-namespace DealDouble.Data.Migrations
+﻿namespace DealDouble.Data.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class auction : DbMigration
+    public partial class test1234 : DbMigration
     {
         public override void Up()
         {
-           
         }
         
         public override void Down()
         {
-           
         }
     }
 }
