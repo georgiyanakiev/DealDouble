@@ -1,5 +1,6 @@
 ﻿using DealDouble.Services;
 using DealDouble.ViewModels;
+using DealDouble.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,16 +17,14 @@ namespace DealDouble.Controllers
         {
             AuctionsViewModel vModel = new AuctionsViewModel();
 
-            vModel.PageTitle = "Home Page";
-            vModel.PageDescription = "This is Home Page";
-
             vModel.AllAuctions = service.GetAllAuctions();
 
             vModel.PromotedAuctions = service.GetPromotedAuctions();
 
-            ViewBag.AllAuctions = service.GetAllAuctions();
+            ViewBag.Title = " Home Page";
 
-            ViewBag.MyPageTitle = "Okazion.bg Ibay.bg Auction.bg BgAuction.bg ";
+            ViewBag.MyPageTitle = "Marketplace";
+            
             
 
             return View(vModel);

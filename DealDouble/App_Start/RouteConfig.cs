@@ -15,7 +15,7 @@ namespace DealDouble
 
             routes.MapRoute(
                 name: "AuctionDetails",
-                url: "auction-details/{ID}",
+                url: "auction-details/{id}",
                 defaults: new { controller = "Auctions", action = "Details" }
             );
 
